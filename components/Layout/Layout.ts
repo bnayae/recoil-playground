@@ -4,15 +4,19 @@ import { LayoutRaw } from './LayoutRaw';
 export const Layout = styled(LayoutRaw)`
   display: grid;
   grid-template-areas:
-    'top    top     top'
+    'info    top     top'
     'left   page    right'
     'bottom bottom  bottom';
   align-items: stretch;
   justify-content: stretch;
+
   grid-template-columns: 1fr 8fr 1fr;
   grid-template-rows: 4rem calc(100vh - 6rem) 2rem;
   background: #eee;
 
+  .info {
+    grid-area: info;
+  }
   .top {
     grid-area: top;
   }
@@ -22,6 +26,8 @@ export const Layout = styled(LayoutRaw)`
   .page {
     grid-area: page;
     background: green;
+    align-self: center;
+    justify-self: center;
   }
   .right {
     grid-area: right;
