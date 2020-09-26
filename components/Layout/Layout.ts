@@ -5,20 +5,20 @@ export const Layout = styled(LayoutRaw)`
   display: grid;
   grid-template-areas:
     "top    top     top"
-    "side   page    right"
+    "left   page    right"
     "bottom bottom  bottom";
   align-items: stretch;
   justify-content: stretch;
-  grid-template-columns: 1fr 9fr 1fr;
+  grid-template-columns: 1fr 8fr 1fr;
   grid-template-rows: 4rem calc(100vh - 6rem) 2rem;
+  background: #eee;
 
   .top {
     grid-area: top;
     background: red;
   }
   .side {
-    grid-area: side;
-    background: blue;
+    grid-area: left;
   }
   .page {
     grid-area: page;
