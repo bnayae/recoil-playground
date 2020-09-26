@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { TodoItem, TodoItemCreator } from '..';
+import { TodoItem, TodoItemCreator, TodoListFilters, TodoListStats } from '..';
 import { IWithClassName } from '../../../../interfaces';
 import { stateTodoList } from '../../../../states';
 
@@ -9,8 +9,8 @@ export const TodoListRaw = ({ className }: IWithClassName) => {
 
   return (
     <div className={className}>
-      {/* <TodoListStats /> */}
-      {/* <TodoListFilters /> */}
+      <TodoListStats />
+      <TodoListFilters />
       <TodoItemCreator />
 
       {todoList.map((todoItem) => (
