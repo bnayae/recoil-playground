@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { EditTitle, Info, Side, Top } from '..';
-import { IWithClassName } from '../../interfaces/IWithClassName';
+import { EditTitle, Info, Side, TodoList, Top } from '..';
+import { IWithClassName } from '../../interfaces';
 import { stateCurrentPage } from '../../states';
 
 export const LayoutRaw = ({ className }: IWithClassName) => {
@@ -18,7 +18,10 @@ export const LayoutRaw = ({ className }: IWithClassName) => {
       <div className="side">
         <Side />
       </div>
-      <div className="page">{page === 1 && <EditTitle />}</div>
+      <div className="page">
+        {page === 1 && <EditTitle />}
+        {page === 2 && <TodoList />}
+      </div>
       <div className="right"></div>
       <div className="bottom"></div>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { IWithClassName } from '../../interfaces/IWithClassName';
+import { IWithClassName } from '../../interfaces';
 import { stateCurrentPage } from '../../states';
 
 export const SideRaw = ({ className }: IWithClassName) => {

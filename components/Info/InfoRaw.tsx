@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { IWithClassName } from '../../interfaces/IWithClassName';
+import { IWithClassName } from '../../interfaces';
 import { selectorPageTitle } from '../../states';
 
 export const InfoRaw = ({ className }: IWithClassName) => {
