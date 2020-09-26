@@ -1,7 +1,6 @@
 import { atom } from 'recoil';
-import { TodoFilterState } from '.';
 
-export const stateTodoListFilter = atom<TodoFilterState>({
+export const stateTodoListFilter = atom<string>({
   key: 'todoListFilterState',
-  default: TodoFilterState.all,
+  default: 'Show All',
 });
