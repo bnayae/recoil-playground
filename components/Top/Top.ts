@@ -1,14 +1,15 @@
 import styled from 'styled-components';
-import { SideRaw } from './SideRaw';
+import { TopRaw } from './TopRaw';
 
-export const Side = styled(SideRaw)`
+export const Top = styled(TopRaw)`
   display: grid;
-  grid-template-columns: 1fr;
-  grid-row-gap: 0.3rem;
+  grid-auto-flow: column;
+  grid-column-gap: 0.3rem;
+
   .selected {
-    background: #33d !important;
+    background: #a3d !important;
     color: #fdd !important;
-    border-color: #333 !important;
+    border-color: #733 !important;
   }
 
   .btn {
@@ -17,8 +18,8 @@ export const Side = styled(SideRaw)`
     border: solid;
     border-radius: 0.6rem;
     border-width: 0.1rem;
-    border-color: #0000dd;
-    background: #ddf;
+    border-color: #5520ee;
+    background: #d9f;
     cursor: pointer;
   }
 `;

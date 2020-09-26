@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { IWithClassName } from '../../interfaces/IWithClassName';
 import { stateCurrentPage } from '../../states';
 
-export const SideRaw = ({ className }: IWithClassName) => {
+export const TopRaw = ({ className }: IWithClassName) => {
   const [page, setPage] = useRecoilState(stateCurrentPage);
   return (
     <div className={className}>
