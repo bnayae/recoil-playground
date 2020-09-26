@@ -1,9 +1,9 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { IWithClassName } from '../../interfaces/IWithClassName';
-import { stateTitle } from '../../states';
+import { selectorPageTitle } from '../../states';
 
 export const InfoRaw = ({ className }: IWithClassName) => {
-  const [title] = useRecoilState(stateTitle);
+  const [title] = useRecoilValue(selectorPageTitle);
   return <h4 className={className}>{title}</h4>;
 };
