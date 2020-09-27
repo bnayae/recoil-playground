@@ -1,12 +1,12 @@
 import { selector } from 'recoil';
 import { stateCurrentPage, stateTitle } from '..';
 
-export const selectorPageTitle = selector({
+export const selectorPageTitle = selector<string[]>({
   key: 'page-title-selector', // unique ID (with respect to other atoms/selectors)
   get: ({ get }) => {
     const page = get(stateCurrentPage);
     const title = get(stateTitle);
 
-    return `${title} (${page})`;
+    return [`${title} (${page})`];
   },
 });
