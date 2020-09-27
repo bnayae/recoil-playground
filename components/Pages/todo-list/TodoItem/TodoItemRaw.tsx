@@ -39,13 +39,21 @@ export const TodoItemRaw = ({
 
   return (
     <div className={className}>
-      <input type="text" value={item.text} onChange={editItemText} />
+      <input
+        type="text"
+        value={item.text}
+        onChange={editItemText}
+        className="text"
+      />
       <input
         type="checkbox"
         checked={item.isComplete}
         onChange={toggleItemCompletion}
+        className="complete"
       />
-      <button onClick={deleteItem}>X</button>
+      <button onClick={deleteItem} className="delete">
+        X
+      </button>
     </div>
   );
 };

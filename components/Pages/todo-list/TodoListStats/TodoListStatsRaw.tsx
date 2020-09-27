@@ -1,7 +1,8 @@
 import { useRecoilValue } from 'recoil';
+import { IWithClassName } from '../../../../interfaces';
 import { selectorTodoListState } from '../../../../states';
 
-export const TodoListStatsRaw = () => {
+export const TodoListStatsRaw = ({ className }: IWithClassName) => {
   const {
     totalNum,
     totalCompletedNum,
@@ -17,11 +18,11 @@ export const TodoListStatsRaw = () => {
   const formattedPercentCompleted = Math.round(percentCompleted * 100);
 
   return (
-    <ul>
-      <li>Total items: {totalNum}</li>
-      <li>Items completed: {totalCompletedNum}</li>
-      <li>Items not completed: {totalUncompletedNum}</li>
-      <li>Percent completed: {formattedPercentCompleted}</li>
-    </ul>
+    <div className={className}>
+      <div>
+        <b>Total items: {totalNum}</b>, Completed: {totalCompletedNum} (
+        {formattedPercentCompleted}%), Not Completed: {totalUncompletedNum}
+      </div>
+    </div>
   );
 };

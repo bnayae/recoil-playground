@@ -25,8 +25,15 @@ export const TodoItemCreatorRaw = ({ className }: IWithClassName) => {
 
   return (
     <div className={className}>
-      <input type="text" value={inputValue} onChange={onChange} />
-      <button onClick={addItem}>Add</button>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={onChange}
+        className="text"
+      />
+      <button onClick={addItem} className="btn">
+        Add
+      </button>
     </div>
   );
 };
