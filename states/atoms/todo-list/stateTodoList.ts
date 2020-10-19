@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { ITodoItem } from './ITodoItem';
+import { ITodoItem } from '.';
 
 export const stateTodoList = atom<ITodoItem[]>({
   key: 'todo-list',

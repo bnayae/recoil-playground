@@ -1,6 +1,5 @@
 import { selector } from 'recoil';
-import { ITodoItem } from './ITodoItem';
-import { stateTodoList } from './stateTodoList';
+import { ITodoItem, stateTodoList } from '..';
 
 export const selectorTodoListState = selector({
   key: 'todoListStatsState',

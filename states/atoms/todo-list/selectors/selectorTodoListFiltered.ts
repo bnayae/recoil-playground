@@ -4,7 +4,7 @@ import {
   stateTodoList,
   stateTodoListFilter,
   TodoFilterState,
-} from '.';
+} from '..';
 
 export const selectorTodoListFiltered = selector<ITodoItem[]>({
   key: 'filteredTodoListState',
