@@ -20,9 +20,9 @@ export const LayoutRaw = ({ className }: IWithClassName) => {
         <Side />
       </div>
       <div className="page">
-        {page === 1 && <EditTitle />}
-        {page === 2 && <TodoList />}
-        {page === 3 && <PingPongBoard />}
+        {page === 0 && <EditTitle />}
+        {page === 1 && <TodoList />}
+        {page === 2 && <PingPongBoard />}
       </div>
       <div className="right"></div>
       <div className="bottom"></div>
