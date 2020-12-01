@@ -11,7 +11,6 @@ export const Layout = styled(LayoutRaw)`
   justify-content: stretch;
 
   grid-template-columns: 1fr 8fr 1fr;
-  grid-template-rows: 4rem calc(100vh - 6rem) 2rem;
   background: #eee;
 
   .info {
