@@ -25,8 +25,9 @@ export const Layout = styled(LayoutRaw)`
   }
   .page {
     grid-area: page;
-    align-self: center;
-    justify-self: center;
+    align-self: left;
+    justify-self: left;
+    margin: 5rem;
   }
   .right {
     grid-area: right;
