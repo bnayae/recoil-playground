@@ -14,6 +14,8 @@ export const OpenApiSimpleRaw = ({ className }: IProps) => {
   if (loadable.state === 'hasError') return <>Error: {loadable.contents}</>;
 
   const { userId, id, title, body } = loadable.contents;
+  console.log(`${id} [${userId}]: ${title} `);
+
   return (
     <div className={className}>
       <p className="note">
