@@ -4,7 +4,11 @@ import { EditTitle, Info, Side, TodoList, Top } from '..';
 import { IWithClassName } from '../../interfaces';
 import { stateCurrentPage } from '../../states';
 import { Countries } from '../Countries/Countries';
-import { OpenApiComplexLoad, OpenApiSimple } from '../open-api';
+import {
+  OpenApiComplexLoad,
+  OpenApiSimple,
+  OpenApiSimpleIndirect,
+} from '../open-api';
 import { PingPongBoard } from '../PingPong';
 
 export const LayoutRaw = ({ className }: IWithClassName) => {
@@ -26,8 +30,9 @@ export const LayoutRaw = ({ className }: IWithClassName) => {
         {page === 1 && <TodoList />}
         {page === 2 && <PingPongBoard />}
         {page === 3 && <OpenApiSimple />}
-        {page === 4 && <OpenApiComplexLoad />}
-        {page === 5 && <Countries />}
+        {page === 4 && <OpenApiSimpleIndirect />}
+        {page === 5 && <OpenApiComplexLoad />}
+        {page === 6 && <Countries />}
       </div>
       <div className="right"></div>
       <div className="bottom"></div>

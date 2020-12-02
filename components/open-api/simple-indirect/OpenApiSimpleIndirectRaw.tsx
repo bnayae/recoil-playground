@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
-import { useRecoilValueLoadable } from 'recoil';
+import React from 'react';
+import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import { IWithClassName } from '../../../interfaces';
-import { postDetailByIdSelector } from '../../../states';
+import { postByIndirectIdSelector } from '../../../states';
+import { postIdAtom } from '../../../states/atoms/open-api/postIdAtom';
 
 interface IProps extends IWithClassName {}
 
-export const OpenApiCompositeLoadRaw = ({ className }: IProps) => {
-  const [targetId, setTargetId] = useState(1);
+export const OpenApiSimpleIndirectRaw = ({ className }: IProps) => {
+  const [targetId, setTargetId] = useRecoilState(postIdAtom);
   // useRecoilValue don't support SSR
-  const loadable = useRecoilValueLoadable(postDetailByIdSelector(targetId));
+  const loadable = useRecoilValueLoadable(postByIndirectIdSelector);
 
   if (loadable.state === 'loading') return <>loading...</>;
   if (loadable.state === 'hasError') return <>Error: {loadable.contents}</>;
 
-  const { user, id, title, body, comments } = loadable.contents;
+  const { userId, id, title, body } = loadable.contents;
+  console.log(`${id} [${userId}]: ${title} `);
+
   return (
     <div className={className}>
-      <p className="note">
-        note: construct hierarchic of post, user & comments
-      </p>
+      <p className="note">note: the actual post id come from different atom</p>
       <p className="note">
         note: this sample use useRecoilValueLoadable because useRecoilValue
         don't support SSR
@@ -35,18 +36,10 @@ export const OpenApiCompositeLoadRaw = ({ className }: IProps) => {
           Down ↓
         </button>
         <h3 className="title">Id: {id}</h3>
-        <h3 className="title">
-          User: {user.name}, {user.email}
-        </h3>
+        <h3 className="title">User: {userId}</h3>
       </div>
       <h2>{title}</h2>
       <p>{body}</p>
-      <h3>Comments:</h3>
-      <ul>
-        {comments.map((c) => (
-          <li>{c.body}</li>
-        ))}
-      </ul>
     </div>
   );
 };

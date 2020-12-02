@@ -17,5 +17,5 @@ export const postByIdProxy = async (id: number): Promise<IPost> => {
 
 export const postByIdSelector = selectorFamily<IPost, number>({
   key: 'post-by-id',
-  get: (id) => async () => postByIdProxy(id),
+  get: (id) => () => postByIdProxy(id),
 });
