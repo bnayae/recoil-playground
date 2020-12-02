@@ -3,7 +3,7 @@ import { TopRaw } from './TopRaw';
 
 export const Top = styled(TopRaw)`
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: repeat(auto-fit, minMax(10rem, 1fr));
   grid-column-gap: 0.3rem;
 
   .selected {
