@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { useRecoilValueLoadable } from 'recoil';
 import { IWithClassName } from '../../../interfaces';
-import { postByIdSelector } from '../../../states';
+import { postDetailByIdSelector } from '../../../states';
 
 interface IProps extends IWithClassName {}
 
 export const OpenApiCompositeLoadRaw = ({ className }: IProps) => {
   const [targetId, setTargetId] = useState(1);
   // useRecoilValue don't support SSR
-  const loadable = useRecoilValueLoadable(postByIdSelector(targetId));
+  const loadable = useRecoilValueLoadable(postDetailByIdSelector(targetId));
 
   if (loadable.state === 'loading') return <>loading...</>;
   if (loadable.state === 'hasError') return <>Error: {loadable.contents}</>;
 
-  const { userId, id, title, body } = loadable.contents;
+  const { user, id, title, body, comments } = loadable.contents;
   return (
     <div className={className}>
       <p className="note">
@@ -32,10 +32,18 @@ export const OpenApiCompositeLoadRaw = ({ className }: IProps) => {
           Down ↓
         </button>
         <h3 className="title">Id: {id}</h3>
-        <h3 className="title">User: {userId}</h3>
+        <h3 className="title">
+          User: {user.name}, {user.email}
+        </h3>
       </div>
       <h2>{title}</h2>
       <p>{body}</p>
+      <h3>Comments:</h3>
+      <ul>
+        {comments.map((c) => (
+          <li>{c.body}</li>
+        ))}
+      </ul>
     </div>
   );
 };

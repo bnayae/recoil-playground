@@ -21,7 +21,7 @@ export const postsDetailsSelector = selector<IPostDetails[]>({
   get: async ({ get }) => {
     const posts = await get(postsSelector);
     const details: IPostDetails[] = get(
-      waitForAll(posts.map((post) => postDetailByIdSelector(post)))
+      waitForAll(posts.map(({ id }) => postDetailByIdSelector(id)))
     );
     return details;
   },
