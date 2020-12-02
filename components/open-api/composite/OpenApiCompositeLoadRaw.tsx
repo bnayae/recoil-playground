@@ -5,7 +5,7 @@ import { postByIdSelector } from '../../../states';
 
 interface IProps extends IWithClassName {}
 
-export const OpenApiSimpleRaw = ({ className }: IProps) => {
+export const OpenApiCompositeLoadRaw = ({ className }: IProps) => {
   const [targetId, setTargetId] = useState(1);
   // useRecoilValue don't support SSR
   const loadable = useRecoilValueLoadable(postByIdSelector(targetId));
