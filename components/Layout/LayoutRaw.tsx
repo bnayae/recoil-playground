@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import { EditTitle, Info, Side, TodoList, Top } from '..';
 import { IWithClassName } from '../../interfaces';
 import { stateCurrentPage } from '../../states';
+import { Countries } from '../Countries/Countries';
 import { OpenApiComplexLoad, OpenApiSimple } from '../open-api';
 import { PingPongBoard } from '../PingPong';
 
@@ -26,6 +27,7 @@ export const LayoutRaw = ({ className }: IWithClassName) => {
         {page === 2 && <PingPongBoard />}
         {page === 3 && <OpenApiSimple />}
         {page === 4 && <OpenApiComplexLoad />}
+        {page === 5 && <Countries />}
       </div>
       <div className="right"></div>
       <div className="bottom"></div>
