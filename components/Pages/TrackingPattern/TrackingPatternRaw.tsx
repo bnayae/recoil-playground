@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
-import { IPostNullable, IWithClassName } from '../../interfaces';
-import { postAtom, postTrackingAtom } from '../../states';
+import { IPostNullable, IWithClassName } from '../../../interfaces';
+import { postAtom, postTrackingAtom } from '../../../states';
 import { TrackingInput } from './tracked-components/TrackingInput';
 
 interface IProps extends IWithClassName {
-  id: number;
+  // id: number;
 }
 
 // todo: button, submit
 // todo: other fields
 // todo: validation (isDirty) with Yup
 
-export const TrackingPatternRaw = ({ id, className }: IProps) => {
+export const TrackingPatternRaw = ({ className }: IProps) => {
+  const [targetId, setTargetId] = useState(1);
   // const loadable = useRecoilValueLoadable(postTrackingSelector(id));
-  const loadable = useRecoilValueLoadable(postAtom(id));
-  const [changed, mutator] = useRecoilState(postTrackingAtom(id));
+  const loadable = useRecoilValueLoadable(postAtom(targetId));
+  const [changed, mutator] = useRecoilState(postTrackingAtom(targetId));
 
   if (loadable.state === 'loading') return <>loading...</>;
   if (loadable.state === 'hasError') return <>Error: {loadable.contents}</>;
@@ -25,20 +26,24 @@ export const TrackingPatternRaw = ({ id, className }: IProps) => {
 
   return (
     <div className={className}>
-      <input
+      <div className="header">
+        <button className="btn" onClick={() => setTargetId((prev) => prev + 1)}>
+          Up ↑
+        </button>
+        <button
+          className="btn"
+          onClick={() => setTargetId((prev) => prev - 1)}
+          disabled={targetId <= 1}
+        >
+          Down ↓
+        </button>
+      </div>
+      <TrackingInput<IPostNullable>
         className="text"
-        type="text"
-        value={changed?.title ?? origin.title}
-        onChange={(e) =>
-          mutator((prev) => {
-            const newValue: IPostNullable = {
-              ...prev,
-              id,
-              title: e.target.value,
-            };
-            return newValue;
-          })
-        }
+        name="title"
+        origin={origin}
+        changed={changed}
+        mutator={mutator}
       />
       <TrackingInput<IPostNullable>
         className="text"

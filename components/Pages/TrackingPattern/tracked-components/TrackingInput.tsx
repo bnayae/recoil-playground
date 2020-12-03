@@ -1,5 +1,5 @@
 import React from 'react';
-import { IWithClassName } from '../../../interfaces';
+import { IWithClassName } from '../../../../interfaces';
 
 interface IProps<T extends unknown> extends IWithClassName {
   name: keyof T;

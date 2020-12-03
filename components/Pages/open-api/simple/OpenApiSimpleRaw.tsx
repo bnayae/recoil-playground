@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRecoilValueLoadable } from 'recoil';
-import { IWithClassName } from '../../../interfaces';
-import { postByIdSelector } from '../../../states';
+import { IWithClassName } from '../../../../interfaces';
+import { postByIdSelector } from '../../../../states';
 
 interface IProps extends IWithClassName {}
 
