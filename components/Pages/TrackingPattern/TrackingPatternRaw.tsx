@@ -37,6 +37,8 @@ export const TrackingPatternRaw = ({ className }: IProps) => {
         >
           Down ↓
         </button>
+        <h3 className="title">Id: {origin.id}</h3>
+        <h3 className="title">User: {origin.userId}</h3>
       </div>
       <TrackingInput<IPostNullable>
         className="text"
