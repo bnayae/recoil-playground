@@ -24,6 +24,7 @@
     "**/*.js",
     "**/*.ts",
     "**/*.tsx",
-    "states/atoms/TrackPattern/postTrackingSelector.deprecated.ts_"
+    "states/atoms/TrackPattern/postTrackingSelector.deprecated.ts_",
+    "interfaces/tracking/IPostNullable.ts_"
   ]
 }

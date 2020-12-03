@@ -2,7 +2,7 @@ import React from 'react';
 import { IWithClassName } from '../../../../interfaces';
 
 interface IProps<T extends unknown> extends IWithClassName {
-  name: keyof T;
+  name: keyof Partial<T>;
   origin: Partial<Record<keyof T, unknown>>;
   changed?: Partial<Record<keyof T, unknown>>;
   mutator: (
@@ -33,7 +33,9 @@ export const TrackingInput = <T extends unknown>({
 
   return (
     <>
-      <h4>{name}</h4>
+      <h4>
+        {name} dirty = {JSON.stringify((changed && changed[name]) != null)}
+      </h4>
       {!multi && (
         <input
           className={className}

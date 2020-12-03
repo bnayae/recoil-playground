@@ -1,7 +1,7 @@
 import { atomFamily } from 'recoil';
-import { IPostNullable } from './../../../interfaces/tracking/IPostNullable';
+import { IPost } from '../../../interfaces';
 
-export const postTrackingAtom = atomFamily<IPostNullable, number>({
+export const postTrackingAtom = atomFamily<Partial<IPost>, number>({
   key: 'post-tracking',
   default: (id) => {
     return {

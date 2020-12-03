@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
-import { IPostNullable, IWithClassName } from '../../../interfaces';
+import { IPost, IWithClassName } from '../../../interfaces';
 import { postAtom, postTrackingAtom } from '../../../states';
 import { TrackingInput } from './tracked-components/TrackingInput';
 
@@ -14,7 +14,6 @@ interface IProps extends IWithClassName {
 
 export const TrackingPatternRaw = ({ className }: IProps) => {
   const [targetId, setTargetId] = useState(1);
-  // const loadable = useRecoilValueLoadable(postTrackingSelector(id));
   const loadable = useRecoilValueLoadable(postAtom(targetId));
   const [changed, mutator] = useRecoilState(postTrackingAtom(targetId));
 
@@ -40,14 +39,14 @@ export const TrackingPatternRaw = ({ className }: IProps) => {
         <h3 className="title">Id: {origin.id}</h3>
         <h3 className="title">User: {origin.userId}</h3>
       </div>
-      <TrackingInput<IPostNullable>
+      <TrackingInput<IPost>
         className="text"
         name="title"
         origin={origin}
         changed={changed}
         mutator={mutator}
       />
-      <TrackingInput<IPostNullable>
+      <TrackingInput<IPost>
         className="text"
         name="body"
         origin={origin}
