@@ -19,7 +19,7 @@ export const TrackingPatternRaw = ({ className }: IProps) => {
   const trackingRecoil = postTrackingAtom(targetId);
   // const [changed, mutator] = useRecoilState(postTrackingAtom(targetId));
   const tracker = useTracking(originRecoil, trackingRecoil);
-  const { isLoading, error, getOrigin, tracking, merge, mutate } = tracker;
+  const { isLoading, error, getOrigin, tracking, merge } = tracker;
 
   if (isLoading) return <>loading...</>;
   if (error) return <>Error: {error}</>;

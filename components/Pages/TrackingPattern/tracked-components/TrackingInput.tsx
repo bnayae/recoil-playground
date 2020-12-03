@@ -18,7 +18,7 @@ export const TrackingInput = <T extends object>({
   className,
 }: IProps<T>) => {
   // todo: move to the hook
-  const isDirty = isDirtyKey(name) && origin[name] != tracking[name];
+  const isDirty = isDirtyKey(name); // && origin[name] != tracking[name];
   // console.log(
   //   `## track [${name}]: ${JSON.stringify(tracking[name])} = ${JSON.stringify(
   //     tracking
