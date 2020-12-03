@@ -18,10 +18,8 @@ export const TrackingPatternRaw = ({ className }: IProps) => {
   // const loadable = useRecoilValueLoadable(postAtom(targetId));
   const trackingRecoil = postTrackingAtom(targetId);
   // const [changed, mutator] = useRecoilState(postTrackingAtom(targetId));
-  const { isLoading, error, getOrigin, tracking, merge, mutate } = useTracking(
-    originRecoil,
-    trackingRecoil
-  );
+  const tracker = useTracking(originRecoil, trackingRecoil);
+  const { isLoading, error, getOrigin, tracking, merge, mutate } = tracker;
 
   if (isLoading) return <>loading...</>;
   if (error) return <>Error: {error}</>;
@@ -45,18 +43,16 @@ export const TrackingPatternRaw = ({ className }: IProps) => {
         <h3 className="title">User: {origin.userId}</h3>
       </div>
       <TrackingInput<IPost>
+        {...tracker}
         className="text"
         name="title"
         origin={origin}
-        changed={tracking}
-        mutator={mutate}
       />
       <TrackingInput<IPost>
+        {...tracker}
         className="text"
         name="body"
         origin={origin}
-        changed={tracking}
-        mutator={mutate}
         multi
       />
       <h4>Origin</h4>

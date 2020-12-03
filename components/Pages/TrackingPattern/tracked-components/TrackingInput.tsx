@@ -1,29 +1,36 @@
 import React from 'react';
 import { IWithClassName } from '../../../../interfaces';
+import { ITrackingBase } from '../ITracking';
 
-interface IProps<T extends unknown> extends IWithClassName {
+interface IProps<T extends object> extends ITrackingBase<T>, IWithClassName {
   name: keyof Partial<T>;
   origin: Partial<Record<keyof T, unknown>>;
-  changed?: Partial<Record<keyof T, unknown>>;
-  mutator: (
-    valOrUpdater: Partial<T> | ((currVal: Partial<T>) => Partial<T>)
-  ) => void;
   multi?: boolean;
 }
 
-export const TrackingInput = <T extends unknown>({
+export const TrackingInput = <T extends object>({
   name,
   origin,
-  changed,
-  mutator,
+  tracking,
+  mutate,
+  isDirtyKey,
   multi,
   className,
 }: IProps<T>) => {
-  const value = (changed && changed[name]) ?? origin[name];
+  // todo: move to the hook
+  const isDirty = isDirtyKey(name) && origin[name] != tracking[name];
+  // console.log(
+  //   `## track [${name}]: ${JSON.stringify(tracking[name])} = ${JSON.stringify(
+  //     tracking
+  //   )}`
+  // );
+  // console.log(`## origin = track [${name}]: ${origin[name] == tracking[name]}`);
+
+  const value = isDirty ? tracking[name] : origin[name];
   const handleChanges = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) =>
-    mutator((prev) => {
+    mutate((prev) => {
       const newValue = {
         ...prev,
         [name]: e.target.value,
@@ -34,7 +41,7 @@ export const TrackingInput = <T extends unknown>({
   return (
     <>
       <h4>
-        {name} dirty = {JSON.stringify((changed && changed[name]) != null)}
+        {name} dirty = {JSON.stringify(isDirty)}
       </h4>
       {!multi && (
         <input

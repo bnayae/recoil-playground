@@ -1,21 +1,10 @@
 import {
   RecoilState,
   RecoilValue,
-  SetterOrUpdater,
   useRecoilState,
   useRecoilValueLoadable,
 } from 'recoil';
-
-interface ITracking<T> {
-  isLoading: boolean;
-  error: Error | undefined;
-  getOrigin: () => T;
-  tracking: Partial<T>;
-  isDirty: boolean;
-  isDirtyKey: (key: keyof Partial<T>) => boolean;
-  merge: () => T | undefined;
-  mutate: SetterOrUpdater<Partial<T>>;
-}
+import { ITracking } from './ITracking';
 
 /**
  * Abstract mutable component pattern
@@ -27,6 +16,7 @@ export const useTracking = <T extends object>(
 ): ITracking<T> => {
   const loadable = useRecoilValueLoadable(originValue);
   const [tracking, mutate] = useRecoilState(tracker);
+  // const [origin, setOrigin] = useState<T | undefined>(undefined);
 
   // benchmark (Performance): https://stackoverflow.com/questions/679915/how-do-i-test-for-an-empty-javascript-object
   const isEmpty = () => {
@@ -40,7 +30,17 @@ export const useTracking = <T extends object>(
     return true;
   };
 
-  const isPropEmpty = (key: keyof Partial<T>) => tracking[key] !== undefined;
+  const isPropEmpty = (key: keyof Partial<T>) => {
+    if (tracking[key] !== undefined) return true;
+
+    // console.log(`## origin [${key}]: ${JSON.stringify(origin && origin[key])}`);
+    // console.log(`## track [${key}]: ${JSON.stringify(tracking[key])}`);
+    // console.log(`## track: ${JSON.stringify(tracking)}`);
+    // if (tracking[key] === (origin && origin[key])) return true;
+    // if (tracking[name] != (origin && origin[name])) return true;
+
+    return false;
+  };
 
   const merge = (): T | undefined => {
     if (loadable.state !== 'hasValue') return undefined;
@@ -53,7 +53,12 @@ export const useTracking = <T extends object>(
   const error = loadable.state === 'hasError' ? loadable.contents : undefined;
 
   const getOrigin = () => {
-    if (loadable.state === 'hasValue') return loadable.contents;
+    // if (origin) return origin;
+    if (loadable.state === 'hasValue') {
+      const val = loadable.contents;
+      // setOrigin(val);
+      return val;
+    }
     if (error) throw error;
     throw Error('Loading, origin cannot fetch before loading complete');
   };
