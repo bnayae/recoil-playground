@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { IWithClassName } from '../../interfaces';
-import { stateFamilyPingPong } from '../../states';
+import { IWithClassName } from '../../../interfaces';
+import { stateFamilyPingPong } from '../../../states';
 
 interface IProps extends IWithClassName {
   title: string;

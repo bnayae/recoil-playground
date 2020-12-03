@@ -6,4 +6,5 @@ export const pagesHeader = [
   'indirect pattern (selector)',
   'composite: wait all',
   'countries',
+  'trackable',
 ] as const;

@@ -1,7 +1,14 @@
 import { atomFamily } from 'recoil';
 import { IPost } from '../../../interfaces';
 
-export const postTrackingAtom = atomFamily<IPost | undefined, number>({
+export const postTrackingAtom = atomFamily<Partial<IPost>, number>({
   key: 'post-tracking',
-  default: undefined,
+  default: (id) => {
+    return {
+      id,
+      // userId: 0,
+      // body: '',
+      // title: '',
+    };
+  },
 });

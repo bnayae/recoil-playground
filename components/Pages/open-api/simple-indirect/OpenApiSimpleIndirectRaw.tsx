@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
-import { IWithClassName } from '../../../interfaces';
-import { postByIndirectIdSelector } from '../../../states';
-import { postIdAtom } from '../../../states/atoms/open-api/postIdAtom';
+import { IWithClassName } from '../../../../interfaces';
+import { postByIndirectIdSelector } from '../../../../states';
+import { postIdAtom } from '../../../../states/atoms/open-api/postIdAtom';
 
 interface IProps extends IWithClassName {}
 

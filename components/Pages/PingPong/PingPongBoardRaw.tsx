@@ -1,6 +1,6 @@
 import React from 'react';
 import { PingPong } from '.';
-import { IWithClassName } from '../../interfaces';
+import { IWithClassName } from '../../../interfaces';
 export const PingPongBoardRaw = ({ className }: IWithClassName) => {
   return (
     <div className={className}>

@@ -1,6 +1,8 @@
-export interface IPost {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
+export interface IPostRaw {
+  readonly userId: number;
+  readonly id: number;
+  readonly title: string;
+  readonly body: string;
 }
+
+export type IPost = IPostRaw & Record<keyof IPostRaw, unknown>;
