@@ -1,40 +1,32 @@
 import React from 'react';
+import { ITrackingReady } from '..';
 import { IWithClassName } from '../../../../interfaces';
 
-interface IProps<T extends unknown> extends IWithClassName {
+interface IProps<T extends object> extends ITrackingReady<T>, IWithClassName {
   name: keyof Partial<T>;
-  origin: Partial<Record<keyof T, unknown>>;
-  changed?: Partial<Record<keyof T, unknown>>;
-  mutator: (
-    valOrUpdater: Partial<T> | ((currVal: Partial<T>) => Partial<T>)
-  ) => void;
   multi?: boolean;
 }
 
-export const TrackingInput = <T extends unknown>({
+export const TrackingInput = <T extends object>({
   name,
   origin,
-  changed,
-  mutator,
+  tracking,
+  mutateField,
+  isDirtyKey,
   multi,
   className,
 }: IProps<T>) => {
-  const value = (changed && changed[name]) ?? origin[name];
+  const isDirty = isDirtyKey(name);
+  const rec = origin as Partial<Record<keyof T, unknown>>;
+  const value = isDirty ? tracking[name] : rec[name];
   const handleChanges = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) =>
-    mutator((prev) => {
-      const newValue = {
-        ...prev,
-        [name]: e.target.value,
-      };
-      return newValue;
-    });
+  ) => mutateField(name, e.target.value);
 
   return (
     <>
       <h4>
-        {name} dirty = {JSON.stringify((changed && changed[name]) != null)}
+        {name} dirty = {JSON.stringify(isDirty)}
       </h4>
       {!multi && (
         <input

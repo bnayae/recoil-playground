@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import { IPost, IWithClassName } from '../../../interfaces';
 import { postAtom, postTrackingAtom } from '../../../states';
+import { guardTrackingLoad } from './interfaces';
 import { TrackingInput } from './tracked-components/TrackingInput';
+import { useTrackingFamily } from './useTrackingFamily';
 
 interface IProps extends IWithClassName {
   // id: number;
@@ -14,14 +15,17 @@ interface IProps extends IWithClassName {
 
 export const TrackingPatternRaw = ({ className }: IProps) => {
   const [targetId, setTargetId] = useState(1);
-  const loadable = useRecoilValueLoadable(postAtom(targetId));
-  const [changed, mutator] = useRecoilState(postTrackingAtom(targetId));
+  // const originRecoil = postAtom(targetId);
+  // const trackingRecoil = postTrackingAtom(targetId);
+  // const tracker = useTracking(originRecoil, trackingRecoil);
+  const tracker = useTrackingFamily(postAtom, postTrackingAtom, targetId);
 
-  if (loadable.state === 'loading') return <>loading...</>;
-  if (loadable.state === 'hasError') return <>Error: {loadable.contents}</>;
-
-  const origin = loadable.contents;
-  console.log(JSON.stringify(`# ${origin}`));
+  if (guardTrackingLoad(tracker)) {
+    const { isLoading, error } = tracker;
+    if (isLoading) return <>loading...</>;
+    return <>Error: {error}</>;
+  }
+  const { origin, tracking, merge } = tracker;
 
   return (
     <div className={className}>
@@ -40,24 +44,24 @@ export const TrackingPatternRaw = ({ className }: IProps) => {
         <h3 className="title">User: {origin.userId}</h3>
       </div>
       <TrackingInput<IPost>
+        {...tracker}
         className="text"
         name="title"
         origin={origin}
-        changed={changed}
-        mutator={mutator}
       />
       <TrackingInput<IPost>
+        {...tracker}
         className="text"
         name="body"
         origin={origin}
-        changed={changed}
-        mutator={mutator}
         multi
       />
       <h4>Origin</h4>
       <p>{JSON.stringify(origin)}</p>
       <h4>Changed</h4>
-      <p>{JSON.stringify(changed)}</p>
+      <p>{JSON.stringify(tracking)}</p>
+      <h4>Merged</h4>
+      <p>{JSON.stringify(merge())}</p>
     </div>
   );
 };
