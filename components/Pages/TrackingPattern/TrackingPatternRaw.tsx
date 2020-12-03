@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IPost, IWithClassName } from '../../../interfaces';
 import { postAtom, postTrackingAtom } from '../../../states';
 import { TrackingInput } from './tracked-components/TrackingInput';
-import { useTracking } from './useTracking';
+import { useTrackingFamily } from './useTrackingFamily';
 
 interface IProps extends IWithClassName {
   // id: number;
@@ -14,11 +14,10 @@ interface IProps extends IWithClassName {
 
 export const TrackingPatternRaw = ({ className }: IProps) => {
   const [targetId, setTargetId] = useState(1);
-  const originRecoil = postAtom(targetId);
-  // const loadable = useRecoilValueLoadable(postAtom(targetId));
-  const trackingRecoil = postTrackingAtom(targetId);
-  // const [changed, mutator] = useRecoilState(postTrackingAtom(targetId));
-  const tracker = useTracking(originRecoil, trackingRecoil);
+  // const originRecoil = postAtom(targetId);
+  // const trackingRecoil = postTrackingAtom(targetId);
+  // const tracker = useTracking(originRecoil, trackingRecoil);
+  const tracker = useTrackingFamily(postAtom, postTrackingAtom, targetId);
   const { isLoading, error, getOrigin, tracking, merge } = tracker;
 
   if (isLoading) return <>loading...</>;
