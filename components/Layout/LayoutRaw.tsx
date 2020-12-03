@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { EditTitle, Info, Side, TodoList, Top } from '..';
+import { EditTitle, Info, Side, TodoList, Top, TrackingPattern } from '..';
 import { IWithClassName } from '../../interfaces';
 import { stateCurrentPage } from '../../states';
 import { Countries } from '../Countries/Countries';
@@ -30,6 +30,7 @@ export const LayoutRaw = ({ className }: IWithClassName) => {
         {page === 4 && <OpenApiSimpleIndirect />}
         {page === 5 && <OpenApiComplexLoad />}
         {page === 6 && <Countries />}
+        {page === 7 && <TrackingPattern id={1} />}
       </div>
       <div className="bottom">
         <Info />
