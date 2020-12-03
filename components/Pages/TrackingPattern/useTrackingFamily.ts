@@ -1,5 +1,5 @@
 import { RecoilState } from 'recoil';
-import { ITracking } from './ITracking';
+import { ITracking } from '.';
 import { useTracking } from './useTracking';
 
 export const useTrackingFamily = <T extends object, TParam extends unknown>(

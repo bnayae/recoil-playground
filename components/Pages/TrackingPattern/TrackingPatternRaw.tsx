@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { IPost, IWithClassName } from '../../../interfaces';
 import { postAtom, postTrackingAtom } from '../../../states';
+import { guardTrackingLoad } from './interfaces';
 import { TrackingInput } from './tracked-components/TrackingInput';
 import { useTrackingFamily } from './useTrackingFamily';
 
@@ -18,12 +19,13 @@ export const TrackingPatternRaw = ({ className }: IProps) => {
   // const trackingRecoil = postTrackingAtom(targetId);
   // const tracker = useTracking(originRecoil, trackingRecoil);
   const tracker = useTrackingFamily(postAtom, postTrackingAtom, targetId);
-  const { isLoading, error, getOrigin, tracking, merge } = tracker;
 
-  if (isLoading) return <>loading...</>;
-  if (error) return <>Error: {error}</>;
-
-  const origin: IPost = getOrigin();
+  if (guardTrackingLoad(tracker)) {
+    const { isLoading, error } = tracker;
+    if (isLoading) return <>loading...</>;
+    return <>Error: {error}</>;
+  }
+  const { origin, tracking, merge } = tracker;
 
   return (
     <div className={className}>

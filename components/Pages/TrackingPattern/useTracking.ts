@@ -4,7 +4,7 @@ import {
   useRecoilState,
   useRecoilValueLoadable,
 } from 'recoil';
-import { ITracking } from './ITracking';
+import { ITracking } from '.';
 
 /**
  * Abstract mutable component pattern
@@ -16,6 +16,16 @@ export const useTracking = <T extends object>(
 ): ITracking<T> => {
   const loadable = useRecoilValueLoadable(originValue);
   const [tracking, mutate] = useRecoilState(tracker);
+
+  const isLoading = loadable.state === 'loading';
+  const error = loadable.state === 'hasError' ? loadable.contents : undefined;
+
+  if (loadable.state !== 'hasValue') {
+    return {
+      isLoading,
+      error,
+    };
+  }
 
   // benchmark (Performance): https://stackoverflow.com/questions/679915/how-do-i-test-for-an-empty-javascript-object
   const isDirty = () => {
@@ -29,23 +39,10 @@ export const useTracking = <T extends object>(
     return true;
   };
 
-  const merge = (): T | undefined => {
-    if (loadable.state !== 'hasValue') return undefined;
-    const origin: T = loadable.contents;
-    // if (Array.isArray(origin)) return [...origin, ...tracking];
+  const origin = loadable.contents;
+
+  const merge = (): T => {
     return { ...origin, ...tracking };
-  };
-
-  const isLoading = loadable.state === 'loading';
-  const error = loadable.state === 'hasError' ? loadable.contents : undefined;
-
-  const getOrigin = () => {
-    if (loadable.state === 'hasValue') {
-      const val = loadable.contents;
-      return val;
-    }
-    if (error) throw error;
-    throw Error('Loading, origin cannot fetch before loading complete');
   };
 
   const isDirtyKey = (key: keyof Partial<T>) => {
@@ -58,13 +55,22 @@ export const useTracking = <T extends object>(
     return false; // not loaded yet or loaded with errors
   };
 
+  const mutateField = (key: keyof T, value: unknown) =>
+    mutate((prev) => {
+      console.log(`## ${key}`);
+      const newValue = {
+        ...prev,
+        [key]: value,
+      };
+      return newValue;
+    });
+
   return {
-    isLoading,
-    error,
-    getOrigin,
+    origin,
     tracking,
     merge,
     mutate,
+    mutateField,
     isDirty: isDirty(),
     isDirtyKey,
   };
