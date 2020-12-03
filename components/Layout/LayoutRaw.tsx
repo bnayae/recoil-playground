@@ -16,9 +16,6 @@ export const LayoutRaw = ({ className }: IWithClassName) => {
 
   return (
     <div className={className}>
-      <div className="info">
-        <Info />
-      </div>
       <div className="top">
         <Top />
       </div>
@@ -34,8 +31,9 @@ export const LayoutRaw = ({ className }: IWithClassName) => {
         {page === 5 && <OpenApiComplexLoad />}
         {page === 6 && <Countries />}
       </div>
-      <div className="right"></div>
-      <div className="bottom"></div>
+      <div className="bottom">
+        <Info />
+      </div>
     </div>
   );
 };

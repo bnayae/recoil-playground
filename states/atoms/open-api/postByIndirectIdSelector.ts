@@ -1,6 +1,6 @@
 import { selector } from 'recoil';
 import { IPost } from '../../../interfaces';
-import { postByIdProxy } from './postByIdSelector';
+import { postByIdProxy } from './postByIdProxy';
 import { postIdAtom } from './postIdAtom';
 
 /**

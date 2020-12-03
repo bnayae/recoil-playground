@@ -1,3 +1,4 @@
+export { postByIdProxy } from './postByIdProxy';
 export { postByIdSelector } from './postByIdSelector';
 export { postByIndirectIdSelector } from './postByIndirectIdSelector';
 export { postDetailByIdSelector } from './postDetailByIdSelector';
