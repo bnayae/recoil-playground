@@ -10,7 +10,7 @@ export const Layout = styled(LayoutRaw)`
   align-items: stretch;
   justify-content: stretch;
   grid-template-rows: auto 1fr auto;
-  height: 100vh;
+  /* height: 100vh; */
 
   grid-template-columns: 1fr 8fr;
   background: #eee;
