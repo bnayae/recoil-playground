@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import {
   EditTitle,
   Info,
+  ObjectHierarchic,
   OpenApiComplexLoad,
   OpenApiSimple,
   OpenApiSimpleIndirect,
@@ -36,6 +37,7 @@ export const LayoutRaw = ({ className }: IWithClassName) => {
         {page === 5 && <OpenApiComplexLoad />}
         {page === 6 && <Countries />}
         {page === 7 && <TrackingPattern />}
+        {page === 8 && <ObjectHierarchic />}
       </div>
       <div className="bottom">
         <Info />
