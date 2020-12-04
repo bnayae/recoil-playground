@@ -7,4 +7,5 @@ export const pagesHeader = [
   'composite: wait all',
   'countries',
   'trackable',
+  'object hierarchic',
 ] as const;
