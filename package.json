@@ -9,14 +9,14 @@
     "export": "next build && next export && serve out -l 3001"
   },
   "dependencies": {
-    "next": "latest",
+    "next": "^10.0.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "recoil": "0.0.13",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
-    "@types/node": "^12.12.21",
+    "@types/node": "^12.19.8",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
     "@types/styled-components": "^5.1.4",
