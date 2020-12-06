@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValueLoadable } from 'recoil';
-import { IWithClassName } from '../../interfaces';
-import { countriesSelector } from '../../states/atoms/countries/countriesSelector';
+import { IWithClassName } from '../../../interfaces';
+import { countriesSelector } from '../../../states/atoms/countries/countriesSelector';
 import { Country } from './Country/Country';
 
 interface IProps extends IWithClassName {}

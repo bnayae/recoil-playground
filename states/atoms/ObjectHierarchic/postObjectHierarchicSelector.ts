@@ -1,5 +1,4 @@
 import { selectorFamily, waitForAll } from 'recoil';
-import { postByIdProxy } from '..';
 import { guardRecoilDefaultValue } from '../../../guards';
 import { IPost } from '../../../interfaces';
 import {
@@ -9,8 +8,8 @@ import {
   postUserIdFiledAtom,
 } from './PostFields';
 
-export const postComplexSelector = selectorFamily<IPost, number>({
-  key: 'complex-post-origin',
+export const postObjectHierarchicSelector = selectorFamily<IPost, number>({
+  key: 'object-hierarchic-post',
   get: (id) => ({ get }) => {
     const post: IPost = get(
       waitForAll({
@@ -24,16 +23,20 @@ export const postComplexSelector = selectorFamily<IPost, number>({
     return post;
   },
   set: (id) => async ({ set /*get , reset */ }, post) => {
-    let value: IPost;
+    // let value: IPost;
     if (guardRecoilDefaultValue(post)) {
-      value = await postByIdProxy(id);
-    } else {
-      value = post;
+      // value = await postByIdProxy(id);
+      // console.log(`@@ [${id}] DEFAULT: ${JSON.stringify(value)}`);
+      return;
     }
+    //  else {
+    //   value = post;
+    //   console.log(`@@ [${id}] VALUE: ${JSON.stringify(value)}`);
+    // }
 
-    set(postIdFiledAtom(id), value.id);
-    set(postUserIdFiledAtom(id), value.userId);
-    set(postTitleFiledAtom(id), value.title);
-    set(postBodyFiledAtom(id), value.body);
+    set(postIdFiledAtom(id), post.id);
+    set(postUserIdFiledAtom(id), post.userId);
+    set(postTitleFiledAtom(id), post.title);
+    set(postBodyFiledAtom(id), post.body);
   },
 });

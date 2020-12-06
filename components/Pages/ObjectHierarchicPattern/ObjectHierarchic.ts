@@ -10,7 +10,7 @@ export const ObjectHierarchic = styled(ObjectHierarchicRaw)`
   }
   .header {
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(8, auto);
     grid-column-gap: 1rem;
     align-items: center;
     & .btn {
