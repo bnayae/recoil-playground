@@ -1,4 +1,4 @@
-import { IWithClassName } from './../../../interfaces/IWithClassName';
+import { IWithClassName } from '../../../../interfaces/IWithClassName';
 
 export interface IRegionProps extends IWithClassName {
   id: string;

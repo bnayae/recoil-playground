@@ -15,7 +15,7 @@ import {
 } from '..';
 import { IWithClassName } from '../../interfaces';
 import { stateCurrentPage } from '../../states';
-import { Countries } from '../Countries/Countries';
+import { Countries } from '../Pages/Countries/Countries';
 
 export const LayoutRaw = ({ className }: IWithClassName) => {
   const [page] = useRecoilState(stateCurrentPage);

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRecoilValueLoadable } from 'recoil';
-import { regionFamilySelector } from '../../../states/atoms/region';
+import { regionFamilySelector } from '../../../../states/atoms/region';
 import { IRegionProps } from './IRegion';
 
 export const RegionRaw = ({ regionName }: IRegionProps) => {
