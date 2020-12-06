@@ -21,7 +21,7 @@ export const ObjectHierarchicRaw = ({ className }: IProps) => {
     targetId
   );
   const reset = useResetRecoilState(postObjectHierarchicSelector(targetId));
-  const [_, setter] = useRecoilStateLoadable(
+  const [, setter] = useRecoilStateLoadable(
     postObjectHierarchicSelector(targetId)
   );
 
