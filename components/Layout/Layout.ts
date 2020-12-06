@@ -10,7 +10,7 @@ export const Layout = styled(LayoutRaw)`
   align-items: stretch;
   justify-content: stretch;
   grid-template-rows: auto 1fr auto;
-  /* height: 100vh; */
+  height: 100vh;
 
   grid-template-columns: 1fr 8fr;
   background: #eee;
@@ -25,7 +25,7 @@ export const Layout = styled(LayoutRaw)`
     grid-area: page;
     align-self: left;
     justify-self: left;
-    margin: 5rem;
+    margin: 2rem;
   }
   .bottom {
     grid-area: bottom;

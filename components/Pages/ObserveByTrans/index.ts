@@ -1,0 +1,1 @@
+export { ObserveByTrans } from './ObserveByTrans';

@@ -3,13 +3,13 @@ import { TopRaw } from './TopRaw';
 
 export const Top = styled(TopRaw)`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minMax(10rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minMax(5rem, 15rem));
   grid-column-gap: 0.3rem;
 
   .selected {
-    background: #a3d !important;
+    background: #533fff !important;
     color: #fdd !important;
-    border-color: #733 !important;
+    border-color: #333 !important;
   }
 
   .btn {
@@ -18,8 +18,9 @@ export const Top = styled(TopRaw)`
     border: solid;
     border-radius: 0.6rem;
     border-width: 0.1rem;
-    border-color: #5520ee;
-    background: #d9f;
+    border-color: #000;
+    background: #333;
+    color: #fff;
     cursor: pointer;
   }
 `;

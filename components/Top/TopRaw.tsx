@@ -14,7 +14,7 @@ export const TopRaw = ({ className }: IWithClassName) => {
           key={i}
           className={page === i ? 'selected btn' : 'btn'}
         >
-          Page {i}: {title}
+          {title}
         </div>
       ))}
     </div>
