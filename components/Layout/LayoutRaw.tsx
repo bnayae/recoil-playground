@@ -33,10 +33,10 @@ export const LayoutRaw = ({ className }: IWithClassName) => {
         {page === 0 && <EditTitle />}
         {page === 1 && <TodoList />}
         {page === 2 && <PingPongBoard />}
-        {page === 3 && <OpenApiSimple />}
-        {page === 4 && <OpenApiSimpleIndirect />}
-        {page === 5 && <OpenApiComplexLoad />}
-        {page === 6 && <Countries />}
+        {page === 3 && <Countries />}
+        {page === 4 && <OpenApiSimple />}
+        {page === 5 && <OpenApiSimpleIndirect />}
+        {page === 6 && <OpenApiComplexLoad />}
         {page === 7 && <TrackingPattern />}
         {page === 8 && <ObjectHierarchic />}
         {page === 9 && <UpdateStateWithCallback />}
