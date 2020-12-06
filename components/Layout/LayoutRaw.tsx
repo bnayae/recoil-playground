@@ -12,6 +12,7 @@ import {
   TodoList,
   Top,
   TrackingPattern,
+  UpdateStateWithCallback,
 } from '..';
 import { IWithClassName } from '../../interfaces';
 import { stateCurrentPage } from '../../states';
@@ -38,7 +39,7 @@ export const LayoutRaw = ({ className }: IWithClassName) => {
         {page === 6 && <Countries />}
         {page === 7 && <TrackingPattern />}
         {page === 8 && <ObjectHierarchic />}
-        {page === 9 && <ObjectHierarchic />}
+        {page === 9 && <UpdateStateWithCallback />}
       </div>
       <div className="bottom">
         <Info />
