@@ -9,4 +9,5 @@ export const pagesHeader = [
   'trackable',
   'object hierarchic',
   'state dependencies tracking - callback',
+  'observe by transaction',
 ] as const;

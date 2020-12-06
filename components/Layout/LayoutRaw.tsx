@@ -4,6 +4,7 @@ import {
   EditTitle,
   Info,
   ObjectHierarchic,
+  ObserveByTrans,
   OpenApiComplexLoad,
   OpenApiSimple,
   OpenApiSimpleIndirect,
@@ -40,6 +41,7 @@ export const LayoutRaw = ({ className }: IWithClassName) => {
         {page === 7 && <TrackingPattern />}
         {page === 8 && <ObjectHierarchic />}
         {page === 9 && <UpdateStateWithCallback />}
+        {page === 10 && <ObserveByTrans />}
       </div>
       <div className="bottom">
         <Info />
