@@ -38,6 +38,7 @@ export const LayoutRaw = ({ className }: IWithClassName) => {
         {page === 6 && <Countries />}
         {page === 7 && <TrackingPattern />}
         {page === 8 && <ObjectHierarchic />}
+        {page === 9 && <ObjectHierarchic />}
       </div>
       <div className="bottom">
         <Info />

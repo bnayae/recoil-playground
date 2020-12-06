@@ -8,4 +8,5 @@ export const pagesHeader = [
   'countries',
   'trackable',
   'object hierarchic',
+  'state dependencies tracking - callback',
 ] as const;

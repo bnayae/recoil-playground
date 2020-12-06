@@ -14,7 +14,7 @@ export const SideRaw = ({ className }: IWithClassName) => {
           key={i}
           className={page === i ? 'selected btn' : 'btn'}
         >
-          Page {i}: {title}
+          {i}: {title}
         </div>
       ))}
     </div>
