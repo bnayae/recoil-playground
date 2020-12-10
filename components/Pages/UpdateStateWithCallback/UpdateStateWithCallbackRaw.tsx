@@ -1,5 +1,9 @@
 import React from 'react';
-import { useRecoilCallback, useRecoilValueLoadable } from 'recoil';
+import {
+  useRecoilCallback,
+  useRecoilStateLoadable,
+  useRecoilValueLoadable,
+} from 'recoil';
 import { IWithClassName } from '../../../interfaces';
 import { ageAtom, offersAtom } from '../../../states';
 
@@ -8,7 +12,7 @@ interface IProps extends IWithClassName {
 }
 
 export const UpdateStateWithCallbackRaw = ({ className }: IProps) => {
-  const ageLoadable = useRecoilValueLoadable(ageAtom);
+  const [ageLoadable, setAge] = useRecoilStateLoadable(ageAtom);
   const offerLoadable = useRecoilValueLoadable(offersAtom);
   const updater = useRecoilCallback(
     ({ set /*reset, snapshot, gotoSnapshot */ }) => (newValue: number) => {
@@ -33,6 +37,9 @@ export const UpdateStateWithCallbackRaw = ({ className }: IProps) => {
     <div className={className}>
       <div>{ageValue}</div>
       <button onClick={() => updater((ageValue + 10) % 50)}>Change</button>
+      <button onClick={() => setAge((ageValue + 10) % 50)}>
+        Change direct
+      </button>
       <ul>
         {offerLoadable.contents.map((o) => (
           <li key={o}>{o}</li>

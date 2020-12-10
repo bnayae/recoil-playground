@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useRecoilStateLoadable, useResetRecoilState } from 'recoil';
 import { IWithClassName } from '../../../interfaces';
-import { postObjectHierarchicSelector } from '../../../states/atoms/ObjectHierarchic';
+import {
+  postObjectHierarchicInitSelector,
+  postObjectHierarchicSelector,
+} from '../../../states/atoms/ObjectHierarchic';
 import {
   postBodyFiledAtom,
   postTitleFiledAtom,
@@ -18,6 +21,10 @@ export const ObjectHierarchicRaw = ({ className }: IProps) => {
   const [targetId, setTargetId] = useState(1);
   const data = useLoadableObjectHierarchicFamily(
     postObjectHierarchicSelector,
+    targetId
+  );
+  const origin = useLoadableObjectHierarchicFamily(
+    postObjectHierarchicInitSelector,
     targetId
   );
   const reset = useResetRecoilState(postObjectHierarchicSelector(targetId));
@@ -89,6 +96,8 @@ export const ObjectHierarchicRaw = ({ className }: IProps) => {
       />
       <h4>Data</h4>
       <p>{JSON.stringify(data)}</p>
+      <h4>Origin</h4>
+      <p>{JSON.stringify(origin)}</p>
     </div>
   );
 };
