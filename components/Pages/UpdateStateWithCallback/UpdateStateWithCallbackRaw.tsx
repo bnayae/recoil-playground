@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   useRecoilCallback,
-  useRecoilStateLoadable,
+  useRecoilState,
   useRecoilValueLoadable,
 } from 'recoil';
 import { IWithClassName } from '../../../interfaces';
@@ -12,7 +12,8 @@ interface IProps extends IWithClassName {
 }
 
 export const UpdateStateWithCallbackRaw = ({ className }: IProps) => {
-  const [ageLoadable, setAge] = useRecoilStateLoadable(ageAtom);
+  // const [ageLoadable, setAge] = useRecoilStateLoadable(ageAtom);
+  const [age, setAge] = useRecoilState(ageAtom);
   const offerLoadable = useRecoilValueLoadable(offersAtom);
   const updater = useRecoilCallback(
     ({ set /*reset, snapshot, gotoSnapshot */ }) => (newValue: number) => {
@@ -27,19 +28,17 @@ export const UpdateStateWithCallbackRaw = ({ className }: IProps) => {
       set(ageAtom, newValue);
       set(offersAtom, (prev) => (newValue == 0 ? [] : [...prev, newOffer]));
     },
-    [ageAtom]
+    [age, ageAtom]
   );
-  if (ageLoadable.state !== 'hasValue') return <div>loading...</div>;
+  // if (ageLoadable.state !== 'hasValue') return <div>loading...</div>;
   if (offerLoadable.state !== 'hasValue') return <div>loading...</div>;
 
-  const ageValue = ageLoadable.getValue();
+  // const age = ageLoadable.getValue();
   return (
     <div className={className}>
-      <div>{ageValue}</div>
-      <button onClick={() => updater((ageValue + 10) % 50)}>Change</button>
-      <button onClick={() => setAge((ageValue + 10) % 50)}>
-        Change direct
-      </button>
+      <div>{age}</div>
+      <button onClick={() => updater((age + 10) % 50)}>Change</button>
+      <button onClick={() => setAge((age + 10) % 50)}>Change direct</button>
       <ul>
         {offerLoadable.contents.map((o) => (
           <li key={o}>{o}</li>
